@@ -22,6 +22,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cors({ origin: "*", credentials: true }));
+
 
 const PORT = process.env.PORT || 5001;
 
@@ -37,3 +39,12 @@ app.listen(PORT, () => {
   connectDB();
   console.log(`Server is running on port ${PORT}`);
 });
+
+app.get("/", (req, res) => {
+  res.send("Backend running");
+});
+
+export default app;
+
+// Export the app for serverless deployment 
+// export default app;
